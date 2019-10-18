@@ -7,43 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>eOcean</title>
     <link rel="icon" href="${require('../assets/img/icon.png')}" type="image/png">
+    <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.13/"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">eOcean: R&R</a>
         <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-        <!-- <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" href="#">Sign out</a>
-            </li>
-        </ul> -->
     </nav>
 
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+    <div class="container-fluid h-100">
+        <div class="row h-100">
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar">
                 <div class="sidebar-sticky">
                     <ul class="nav flex-column">
-                        <li class="nav-item">
+                        <li class="nav-item text-white">
                             <a class="nav-link active" href="#">
                                 <span data-feather="home"></span>
                                 Dashboard <span class="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-white">
                             <a class="nav-link" href="#">
                                 <span data-feather="something1"></span>
                                 Something
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-white">
                             <a class="nav-link" href="#">
                                 <span data-feather="something2"></span>
                                 Something
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item text-white">
                             <a class="nav-link" href="#">
                                 <span data-feather="something3"></span>
                                 Something
@@ -87,8 +84,8 @@
                 </div>
             </nav>
 
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
+            <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pl-0 pr-0">
+                <div id="mapView"></div>
             </main>
         </div>
     </div>
