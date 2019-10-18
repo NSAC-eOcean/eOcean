@@ -4,7 +4,6 @@ const fs = require("fs");
 const VisualRecognitionV3 = require("ibm-watson/visual-recognition/v3");
 const { IamAuthenticator } = require("ibm-watson/auth");
 
-console.log(VisualRecognitionV3);
 const visualRecognition = new VisualRecognitionV3({
   version: "2018-03-19",
   authenticator: new IamAuthenticator({
@@ -13,7 +12,7 @@ const visualRecognition = new VisualRecognitionV3({
 });
 
 const classifyParams = {
-  imagesFile: fs.createReadStream("../assets/img/test.jpg"),
+  imagesFile: fs.createReadStream("../assets/img/icon.png"),
   owners: ["me"],
   threshold: 0.6
 };
@@ -23,7 +22,7 @@ console.log("classify", classifyParams);
 visualRecognition
   .classify(classifyParams)
   .then(classifiedImages => {
-    // console.log(JSON.stringify(classifiedImages, null, 2));
+    console.log(JSON.stringify(classifiedImages, null, 2));
   })
   .catch(err => {
     console.log("error:", err);
