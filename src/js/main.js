@@ -1,7 +1,7 @@
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap'
-import 'jquery'
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap";
+import "jquery";
 
-import '../css/main.css'
+import "../css/main.css";
 
-console.log("eOcean: R&R")
+console.log("eOcean: R&R");
