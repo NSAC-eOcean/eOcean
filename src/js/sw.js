@@ -1,3 +1,17 @@
+workbox.routing.registerRoute(
+    /wmts/,
+    new workbox.strategies.CacheFirst({
+        cacheName: 'tiles',
+        plugins: [
+            new workbox.expiration.Plugin({
+                maxEntries: 60,
+                maxAgeSeconds: 30 * 24 * 60 * 60, // 30 Days
+            }),
+        ],
+    }),
+);
+
+
 // workbox.routing.registerRoute(/default/, async ({ url, event }) => {
 //     console.log(url,event)
 //     return new Response(`Custom handler response.`);
