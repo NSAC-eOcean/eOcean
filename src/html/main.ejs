@@ -7,14 +7,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>eOcean</title>
     <link rel="icon" href="${require('../assets/img/icon.png')}" type="image/png">
-    <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
-    <script src="https://js.arcgis.com/4.13/"></script>
+    <!-- <link rel="stylesheet" href="https://js.arcgis.com/4.13/esri/css/main.css">
+    <script src="https://js.arcgis.com/4.13/"></script> -->
+    <!-- <script src="http://dev.openlayers.org/OpenLayers.js"></script> -->
+    <!-- <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.0.1/build/ol.js"></script> -->
+    <!-- <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v6.0.1/css/ol.css"> -->
+    <script src="https://nasa-gibs.github.io/gibs-web-examples/lib/openlayers-5.1.3/ol.js"></script>
 </head>
 
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">eOcean: R&R</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+        <!-- <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">eOcean: R&R</a> -->
+        <a class="navbar-brand col-12 mr-0 text-center" href="#">eOcean: R&R</a>
+        <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
     </nav>
 
     <div class="container-fluid h-100">
@@ -86,6 +91,18 @@
 
             <main role="main" class="col-md-10 ml-sm-auto col-lg-10 pl-0 pr-0">
                 <div id="mapView"></div>
+                <!-- <div id='map'></div> -->
+                <div id='day-panel'>
+                    <div id='day-label'></div>
+                    <input id="day-slider" type="range" min="1" max="12" value="1">
+                </div>
+                <!-- <div id='attribution'>
+                    <a href='http://openlayers.org'>OpenLayers</a>
+                    <a href='https://wiki.earthdata.nasa.gov/display/GIBS'>NASA EOSDIS GIBS</a>
+                    <a href='https://github.com/nasa-gibs/web-examples/blob/master/examples/openlayers/time.js'>
+                        View Source
+                    </a>
+                </div> -->
             </main>
         </div>
     </div>
@@ -100,9 +117,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="//localhost:9000/upload" method="post" enctype="multipart/form-data" target="uploadFrame" id="uploadForm">
+                <form action="//localhost:9000/upload" method="post" enctype="multipart/form-data" target="uploadFrame"
+                    id="uploadForm">
                     <div class="modal-body">
-                            <input type="file" name="image"><br>
+                        <input type="file" name="image"><br>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

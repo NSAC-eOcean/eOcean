@@ -134,3 +134,8 @@ body,
 .sidebar .nav-link {
     color: #fff;
 }
+
+#day-slider {
+    position: fixed;
+    bottom: 0;
+}
