@@ -55,3 +55,9 @@ window.require([
         view.ui.add(layerList, "bottom-left");
     });
 });
+
+
+window.addEventListener('message', (event) => {
+    if(event.origin === 'http://localhost:9000')
+        console.log(event.data)
+}, false)

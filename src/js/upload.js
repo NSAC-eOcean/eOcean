@@ -12,11 +12,19 @@ http.createServer({}, (request, response) => {
         var form = new formidable.IncomingForm()
         form.parse(request, (err, fields, files) => {
             callWatson(fs.createReadStream(files.image.path)).then((watson) => {
-                response.writeHead(200, { 'Content-Type': 'application/json' })
-                response.end(watson)
-            }).catch((error)=>{
-                response.writeHead(200, { 'Content-Type': 'application/json' })
-                response.end(error)
+                // response.writeHead(200, { 'Content-Type': 'application/json' })
+                response.writeHead(200, { 'Content-Type': 'text/html' })
+                response.end(
+                    postMessage(watson)
+                    // watson
+                )
+            }).catch((error) => {
+                // response.writeHead(200, { 'Content-Type': 'application/json' })
+                response.writeHead(200, { 'Content-Type': 'text/html' })
+                response.end(
+                    postMessage(error)
+                    //error
+                )
             })
         })
     } else {
@@ -28,6 +36,7 @@ http.createServer({}, (request, response) => {
         return response.end()
     }
 }).listen(PORT, HOST)
+console.log("Running on " + HOST + " at port " + PORT + ".")
 
 function callWatson(image) {
     return new Promise((resolve, reject) => {
@@ -51,4 +60,8 @@ function callWatson(image) {
                 reject(JSON.stringify({ error: error }))
             })
     })
+}
+
+function postMessage(message) {
+    return `<!DOCTYPE html><html><head><script>window.parent.postMessage(${message},"*");</script></head><body></body></html>`;
 }
