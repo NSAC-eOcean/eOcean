@@ -1,6 +1,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap";
-import "jquery";
+import $ from "jquery";
 import "../css/main.css";
 
 console.log("eOcean: R&R");
@@ -14,8 +14,8 @@ window.require([
     "esri/widgets/LayerList",
 ], function (Map, MapView, WMTSLayer, LayerList) {
     var layer = new WMTSLayer({
-        // url: "https://sealevel-nexus.jpl.nasa.gov/onearth/wmts/geo/wmts.cgi",
-        url: "https://sealevel-nexus.jpl.nasa.gov/onearth/wmts/geo",
+        url: "https://sealevel-nexus.jpl.nasa.gov/onearth/wmts/geo/wmts.cgi",
+        // url: "https://sealevel-nexus.jpl.nasa.gov/onearth/wmts/geo",
         copyright: "<a target='_top' href='sealevel-nexus.jpl.nasa.gov'>Sea Level Data</a> by <a target='_top' href='https://www.nasa.gov'>NASA</a>",
         activeLayer: {
             id: "SEA_SURFACE_HEIGHT_ALT_GRIDS_L4_2SATS_5DAY_6THDEG_V_JPL1609_MONTHLY",
@@ -25,7 +25,7 @@ window.require([
         customParameters: {
         },
         title: "Sea Level Anomalies",
-        // serviceMode: "KVP",
+        serviceMode: "KVP",
     });
     console.log(layer)
 
@@ -58,6 +58,24 @@ window.require([
 
 
 window.addEventListener('message', (event) => {
-    if(event.origin === 'http://localhost:9000')
-        console.log(event.data)
+    if (event.origin === 'http://localhost:9000') {
+        const result = {};
+        event.data.result.images.forEach(image => {
+            image.classifiers.forEach(classifier => {
+                classifier.classes.forEach(cls => {
+                    result.class = cls.class
+                    result.score = cls.score
+                })
+            })
+        });
+        if ($.isEmptyObject(result))
+            console.log('Clean')
+        else console.log('Trashy ' + (result.score * 100) + '%')
+        console.log(result, event.data, $.isEmptyObject(result))
+    }
 }, false)
+
+$('#uploadForm').on('submit', (event) => {
+    $('#upload').modal('hide')
+    // console.log(event)
+})
